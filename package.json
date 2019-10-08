@@ -1,7 +1,7 @@
 {
   "name": "blogful-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Noteful server-side part of the project",
   "main": "index.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
@@ -33,5 +33,16 @@
     "nodemon": "^1.19.2",
     "postgrator-cli": "^3.3.0",
     "supertest": "^4.0.2"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/preet-singh/preet-noteful-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/preet-singh/preet-noteful-server/issues"
+  },
+  "homepage": "https://github.com/preet-singh/preet-noteful-server#readme"
 }
