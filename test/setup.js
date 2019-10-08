@@ -1,4 +1,6 @@
-// eslint-disable-next-line strict
+'use strict';
+process.env.TZ = 'UTC';
+require('dotenv').config();
 const { expect } = require('chai');
 const supertest = require('supertest');
 

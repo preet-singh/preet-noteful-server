@@ -1,3 +1,4 @@
+'use strict';
 const app = require('../src/app');
 
 describe('App', () => {
@@ -5,5 +6,5 @@ describe('App', () => {
     return supertest(app)
       .get('/')
       .expect(200, 'Hello, world!')
-  })
+  });
 });
