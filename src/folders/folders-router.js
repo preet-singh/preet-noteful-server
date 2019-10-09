@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 'use strict';
 const path = require('path');
 const express = require('express');
@@ -29,7 +30,7 @@ foldersRouter
     const newFolder = { folder_name };
 
     for (const [key, value] of Object.entries(newFolder)) {
-      if (value == null) {
+      if (value === null) {
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` }
         });

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 'use strict';
 const path = require('path');
 const express = require('express');
@@ -17,7 +18,7 @@ const serializeNote = note => ({
 notesRouter
   .route('/')
   .get((req, res, next) => {
-    NotesService.getAllnotes(
+    NotesService.getAllNotes(
       req.app.get('db')
     )
       .then(notes => {
@@ -26,11 +27,11 @@ notesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { note_name } = req.body;
-    const newNote = { note_name };
+    const { note_name, note_content, folder_id } = req.body;
+    const newNote = { note_name, note_content, folder_id };
 
     for (const [key, value] of Object.entries(newNote)) {
-      if (value == null) {
+      if (!value) {
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` }
         });
@@ -62,7 +63,7 @@ notesRouter
             error: { message: `Note doesn't exist` }
           });
         }
-        res.Note = note;
+        res.note = note;
         next();
       })
       .catch(next);
@@ -82,18 +83,18 @@ notesRouter
           
   })
   .patch(jsonParser, (req, res, next) => {
-    const { note_name, note_content } = req.body;
-    const noteToUpdate = { note_name, note_content };
+    const { note_name, note_content, folder_id } = req.body;
+    const noteToUpdate = { note_name, note_content, folder_id };
     const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length;
     if(numberOfValues === 0){
       return res.status(400).json({
-        error: { message: `Request body must contain a 'note_name' or 'note_content' `}
+        error: { message: `Request body must contain a 'note_name', 'note_content' or 'folder_id' `}
       });
     }
 
     NotesService.updateNote(
       req.app.get('db'),
-      req.params.Note_id,
+      req.params.note_id,
       noteToUpdate
     )
       .then(numRowsAffected => {

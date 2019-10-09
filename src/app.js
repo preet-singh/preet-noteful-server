@@ -6,10 +6,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
-const validateBearerToken = require('./validateBearerToken');
+//const validateBearerToken = require('./validateBearerToken');
 //const errorHandler = require('./errorHandler');
-const foldersRouter = require('./folders-router');
-const notesRouter = require('./notes-router');
+const foldersRouter = require('./folders/folders-router');
+const notesRouter = require('./notes/notes-router');
 
 const app = express();
 const morganOption = (NODE_ENV === 'production') ? 'tiny' : 'common';
@@ -17,7 +17,7 @@ app.use(morgan(morganOption));
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(validateBearerToken);
+//app.use(validateBearerToken);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello, world!');
